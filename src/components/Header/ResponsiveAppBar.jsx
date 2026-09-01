@@ -164,13 +164,51 @@ function ResponsiveAppBar() {
             </Box>
 
             <Menu
+              id='mobile-navigation-menu'
               anchorEl={anchorElNav}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left'
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left'
+              }}
+              slotProps={{
+                paper: {
+                  sx: {
+                    minWidth: 200,
+                    mt: 1,
+                    bgcolor: '#161616',
+                    color: '#FFFFFF',
+                    border: '1px solid #2B2B2B'
+                  }
+                }
+              }}
             >
               {pages.map(page => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography>{page}</Typography>
+                <MenuItem
+                  key={page.path}
+                  component={Link}
+                  to={page.path}
+                  onClick={handleCloseNavMenu}
+                  sx={{
+                    '&:hover': {
+                      color: '#C6FF00',
+                      bgcolor: 'rgba(198, 255, 0, 0.08)'
+                    }
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      color: 'inherit',
+                      fontFamily: 'Roboto, sans-serif'
+                    }}
+                  >
+                    {page.name}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>

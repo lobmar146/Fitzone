@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import Home from '../../routes/Home'
 import Activities from '../../routes/Activities'
 import ActivityDetail from '../../routes/ActivityDetail'
+import Contact from '../../routes/Contact'
 
 function Main() {
   const location = useLocation()
@@ -40,6 +41,7 @@ function Main() {
               path='/actividades/:activityId'
               element={<ActivityDetail />}
             />
+            <Route path='/contacto' element={<Contact />} />
           </Routes>
         </motion.div>
       </AnimatePresence>
