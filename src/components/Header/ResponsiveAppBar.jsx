@@ -97,11 +97,7 @@ function ResponsiveAppBar() {
                 fontSize: '2.4rem',
                 letterSpacing: '.08rem',
 
-                textDecoration: 'none',
-
-                '@media (max-width: 520px)': {
-                  display: 'none'
-                }
+                textDecoration: 'none'
               }}
             >
               FITZONE
