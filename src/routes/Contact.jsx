@@ -18,7 +18,7 @@ import {
   Typography
 } from '@mui/material'
 
-import TypewriterTitle from '../components/TypewriterTitle'
+import TypewriterTitle from '../components/TypeWriterTitle'
 
 const activities = [
   'Musculación',
