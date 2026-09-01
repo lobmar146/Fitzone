@@ -11,6 +11,8 @@ import FitnessCenterIcon from '@mui/icons-material/FitnessCenter'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import GroupsIcon from '@mui/icons-material/Groups'
 
+import TypewriterTitle from '../TypeWriterTitle'
+
 const benefits = [
   {
     id: 1,
@@ -52,22 +54,23 @@ function BenefitsSection() {
             textAlign: 'center'
           }}
         >
-          <Typography
+          <TypewriterTitle
+            text='¿Por qué FitZone?'
             component='h2'
+            color='#111111'
+            cursorColor='#9BC600'
+            align='center'
+            once={false}
+            speed={65}
+            startDelay={150}
             sx={{
-              color: '#111111',
-              fontFamily: 'Oswald, sans-serif',
               fontSize: {
                 xs: '2rem',
                 md: '2.5rem'
               },
-              fontWeight: 700,
-              lineHeight: 1.2,
-              textTransform: 'uppercase'
+              lineHeight: 1.2
             }}
-          >
-            ¿Por qué FitZone?
-          </Typography>
+          />
 
           <Box
             sx={{
@@ -87,7 +90,13 @@ function BenefitsSection() {
             const Icon = benefit.icon
 
             return (
-              <Grid key={benefit.id} size={{ xs: 12, md: 4 }}>
+              <Grid
+                key={benefit.id}
+                size={{
+                  xs: 12,
+                  md: 4
+                }}
+              >
                 <Card
                   variant='outlined'
                   sx={{
@@ -140,7 +149,7 @@ function BenefitsSection() {
                       <Icon sx={{ fontSize: 38 }} />
                     </Box>
 
-                    {/* Título */}
+                    {/* Título de la card */}
                     <Typography
                       component='h3'
                       sx={{

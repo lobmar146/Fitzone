@@ -1,16 +1,48 @@
-import { Routes, Route } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
+
+import { AnimatePresence, motion } from 'motion/react'
 
 import Home from '../../routes/Home'
-import ProductDetailID from '../../routes/ProductId'
+import Activities from '../../routes/Activities'
+import ActivityDetail from '../../routes/ActivityDetail'
 
 function Main() {
+  const location = useLocation()
+
   return (
     <main>
-      <Routes>
-        <Route path='/' element={<Home />} />
+      <AnimatePresence mode='wait'>
+        <motion.div
+          key={location.key}
+          initial={{
+            opacity: 0,
+            y: 18
+          }}
+          animate={{
+            opacity: 1,
+            y: 0
+          }}
+          exit={{
+            opacity: 0,
+            y: -12
+          }}
+          transition={{
+            duration: 0.3,
+            ease: 'easeInOut'
+          }}
+        >
+          <Routes location={location}>
+            <Route path='/' element={<Home />} />
 
-        <Route path='/product/:id' element={<ProductDetailID />} />
-      </Routes>
+            <Route path='/actividades' element={<Activities />} />
+
+            <Route
+              path='/actividades/:activityId'
+              element={<ActivityDetail />}
+            />
+          </Routes>
+        </motion.div>
+      </AnimatePresence>
     </main>
   )
 }

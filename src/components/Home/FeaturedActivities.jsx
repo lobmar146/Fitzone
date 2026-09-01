@@ -8,22 +8,23 @@ import {
   Grid,
   Typography
 } from '@mui/material'
+import TypewriterTitle from '../TypeWriterTitle'
 
 const activities = [
   {
     id: 1,
     title: 'Musculación',
-    image: '/images/musculacion.png'
+    image: '/images/activities/musculacion.png'
   },
   {
     id: 2,
     title: 'Spinning',
-    image: '/images/spinning.png'
+    image: '/images/activities/spinning.png'
   },
   {
     id: 3,
     title: 'Funcional',
-    image: '/images/funcional.png'
+    image: '/images/activities/funcional.png'
   }
 ]
 
@@ -47,22 +48,23 @@ function FeaturedActivities() {
             textAlign: 'center'
           }}
         >
-          <Typography
+          <TypewriterTitle
+            text='Actividades Destacadas'
             component='h2'
+            color='#111111'
+            cursorColor='#9BC600'
+            align='center'
+            once={false}
+            speed={65}
+            startDelay={150}
             sx={{
-              color: '#111111',
-              fontFamily: 'Oswald, sans-serif',
               fontSize: {
                 xs: '2rem',
                 md: '2.5rem'
               },
-              fontWeight: 700,
-              lineHeight: 1.2,
-              textTransform: 'uppercase'
+              lineHeight: 1.2
             }}
-          >
-            Actividades destacadas
-          </Typography>
+          />
 
           <Box
             sx={{

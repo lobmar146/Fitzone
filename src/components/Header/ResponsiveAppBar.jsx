@@ -14,7 +14,20 @@ import { useContext, useState, useRef } from 'react'
 import { ElementosGlobales } from '../../context/ElementosGlobales'
 import SearchBar from './Searchbar'
 import ChangeTheme from './ChangeTheme'
-const pages = ['Inicio', 'Actividades', 'Contacto']
+const pages = [
+  {
+    name: 'Inicio',
+    path: '/'
+  },
+  {
+    name: 'Actividades',
+    path: '/actividades'
+  },
+  {
+    name: 'Contacto',
+    path: '/contacto'
+  }
+]
 import { Link } from 'react-router-dom'
 function ResponsiveAppBar() {
   const { search, setSearch } = useContext(ElementosGlobales)
@@ -117,27 +130,35 @@ function ResponsiveAppBar() {
             {/* BLOQUE DERECHO */}
             {/* MENÚ ESCRITORIO */}
             <Box
+              component='nav'
               sx={{
-                mr: '15vw',
                 display: {
                   xs: 'none',
                   md: 'flex'
-                }
+                },
+                alignItems: 'center',
+                gap: 2
               }}
             >
               {pages.map(page => (
                 <Button
-                  key={page}
+                  key={page.path}
+                  component={Link}
+                  to={page.path}
                   onClick={handleCloseNavMenu}
                   sx={{
-                    color: 'white',
-                    fontFamily: '"Roboto", sans-serif',
+                    color: '#FFFFFF',
+                    fontFamily: 'Roboto, sans-serif',
+                    fontWeight: 400,
                     textTransform: 'none',
-                    fontWeight: '400',
-                    ml: 4
+
+                    '&:hover': {
+                      color: '#C6FF00',
+                      bgcolor: 'transparent'
+                    }
                   }}
                 >
-                  {page}
+                  {page.name}
                 </Button>
               ))}
             </Box>

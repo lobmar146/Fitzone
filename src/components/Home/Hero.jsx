@@ -1,6 +1,10 @@
+import { Link } from 'react-router-dom'
+
 import { Box, Button, Container, Typography } from '@mui/material'
 
-export default function Hero() {
+import TypewriterTitle from '../TypeWriterTitle'
+
+function Hero() {
   return (
     <Box
       component='section'
@@ -11,7 +15,7 @@ export default function Hero() {
         },
         display: 'flex',
         alignItems: 'center',
-        color: 'white',
+        color: '#FFFFFF',
 
         backgroundImage: `
           linear-gradient(
@@ -22,6 +26,7 @@ export default function Hero() {
           ),
           url('/images/hero.jpg')
         `,
+
         backgroundSize: 'cover',
         backgroundPosition: {
           xs: '65% center',
@@ -33,66 +38,79 @@ export default function Hero() {
       <Container maxWidth='xl'>
         <Box
           sx={{
-            maxWidth: 600,
+            maxWidth: 650,
             py: {
               xs: 8,
               md: 12
             }
           }}
         >
-          <Typography
+          {/* Título animado */}
+          <TypewriterTitle
             component='h1'
+            align='left'
+            cursorColor='#FFFFFF'
+            once={false}
+            parts={[
+              {
+                text: 'Entrená',
+                color: '#FFFFFF',
+                block: true
+              },
+              {
+                text: 'a tu manera',
+                color: '#C6FF00',
+                block: true
+              }
+            ]}
             sx={{
-              fontFamily: 'Oswald, sans-serif',
-              fontWeight: 700,
               fontSize: {
                 xs: '3rem',
                 sm: '4rem',
                 md: '5rem'
               },
-              lineHeight: 1,
-              textTransform: 'uppercase'
+              lineHeight: 1
             }}
-          >
-            Entrená
-            <Box
-              component='span'
-              sx={{
-                display: 'block',
-                color: 'primary.main'
-              }}
-            >
-              a tu manera
-            </Box>
-          </Typography>
+          />
 
+          {/* Descripción */}
           <Typography
             component='p'
             sx={{
+              maxWidth: 450,
               mt: 3,
               mb: 4,
-              maxWidth: 450,
+              color: 'rgba(255, 255, 255, 0.85)',
               fontSize: {
                 xs: '1rem',
                 md: '1.25rem'
               },
-              color: 'rgba(255, 255, 255, 0.85)'
+              lineHeight: 1.6
             }}
           >
             Encontrá la actividad ideal para vos y alcanzá tus objetivos
             acompañado por profesionales.
           </Typography>
 
+          {/* Botón */}
           <Button
+            component={Link}
+            to='/actividades'
             variant='contained'
             color='primary'
             size='large'
+            disableElevation
             sx={{
               px: 4,
               py: 1.5,
-              color: 'common.black',
+              color: '#111111',
+              bgcolor: '#C6FF00',
               fontWeight: 700,
-              textTransform: 'none'
+              textTransform: 'none',
+
+              '&:hover': {
+                bgcolor: '#AEEA00'
+              }
             }}
           >
             Ver actividades
@@ -102,3 +120,5 @@ export default function Hero() {
     </Box>
   )
 }
+
+export default Hero
