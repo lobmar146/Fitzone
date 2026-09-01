@@ -33,119 +33,140 @@ function ResponsiveAppBar() {
   }
 
   return (
-    <AppBar position='static'>
-      <Container maxWidth='xl'>
-        <Toolbar
-          disableGutters
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between'
-          }}
-        >
-          {/* BLOQUE IZQUIERDO */}
-          <Box
+    <>
+      <AppBar
+        position='fixed'
+        elevation={0}
+        sx={{
+          top: 0,
+
+          borderBottom: '1px solid #242424',
+          zIndex: theme => theme.zIndex.drawer + 1
+        }}
+      >
+        <Container maxWidth='xl'>
+          <Toolbar
+            disableGutters
             sx={{
               display: 'flex',
-              alignItems: 'center',
-              gap: 1
+              justifyContent: 'space-between'
             }}
           >
-            {/* Hamburguesa mobile */}
-            <IconButton
-              color='inherit'
-              onClick={handleOpenNavMenu}
+            {/* BLOQUE IZQUIERDO */}
+            <Box
               sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1
+              }}
+            >
+              {/* Hamburguesa mobile */}
+              <IconButton
+                color='inherit'
+                onClick={handleOpenNavMenu}
+                sx={{
+                  display: {
+                    xs: 'flex',
+                    md: 'none'
+                  }
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
+
+              {/* Carrito */}
+              <Link
+                to='/'
+                style={{
+                  display: 'flex',
+                  color: 'inherit',
+                  textDecoration: 'none'
+                }}
+              >
+                <img
+                  src='/images/logo.svg'
+                  alt='logo'
+                  style={{
+                    width: 42,
+                    height: 42,
+                    display: 'block'
+                  }}
+                />
+              </Link>
+              {/* Nombre */}
+              <Typography
+                variant='span'
+                noWrap
+                component='a'
+                href='/'
+                color='primary'
+                sx={{
+                  fontFamily: 'monospace',
+                  fontStyle: 'italic',
+                  fontWeight: 700,
+                  fontSize: '2.4rem',
+                  letterSpacing: '.08rem',
+
+                  textDecoration: 'none'
+                }}
+              >
+                FITZONE
+              </Typography>
+            </Box>
+
+            {/* BLOQUE DERECHO */}
+            {/* MENÚ ESCRITORIO */}
+            <Box
+              sx={{
+                mr: '15vw',
                 display: {
-                  xs: 'flex',
-                  md: 'none'
+                  xs: 'none',
+                  md: 'flex'
                 }
               }}
             >
-              <MenuIcon />
-            </IconButton>
+              {pages.map(page => (
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{
+                    color: 'white',
+                    fontFamily: '"Roboto", sans-serif',
+                    textTransform: 'none',
+                    fontWeight: '400',
+                    ml: 4
+                  }}
+                >
+                  {page}
+                </Button>
+              ))}
+            </Box>
 
-            {/* Carrito */}
-            <Link
-              to='/'
-              style={{
-                display: 'flex',
-                color: 'inherit',
-                textDecoration: 'none'
-              }}
+            <Menu
+              anchorEl={anchorElNav}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
             >
-              <img
-                src='/images/logo.svg'
-                alt='logo'
-                style={{
-                  width: 42,
-                  height: 42,
-                  display: 'block'
-                }}
-              />
-            </Link>
-            {/* Nombre */}
-            <Typography
-              variant='span'
-              noWrap
-              component='a'
-              href='/'
-              color='primary'
-              sx={{
-                fontFamily: 'monospace',
-                fontStyle: 'italic',
-                fontWeight: 700,
-                fontSize: '2.4rem',
-                letterSpacing: '.08rem',
+              {pages.map(page => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography>{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Toolbar>
+        </Container>
+      </AppBar>
 
-                textDecoration: 'none'
-              }}
-            >
-              FITZONE
-            </Typography>
-          </Box>
-
-          {/* BLOQUE DERECHO */}
-          {/* MENÚ ESCRITORIO */}
-          <Box
-            sx={{
-              mr: '15vw',
-              display: {
-                xs: 'none',
-                md: 'flex'
-              }
-            }}
-          >
-            {pages.map(page => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{
-                  color: 'white',
-                  fontFamily: '"Roboto", sans-serif',
-                  textTransform: 'none',
-                  fontWeight: '400',
-                  ml: 4
-                }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
-
-          <Menu
-            anchorEl={anchorElNav}
-            open={Boolean(anchorElNav)}
-            onClose={handleCloseNavMenu}
-          >
-            {pages.map(page => (
-              <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Typography>{page}</Typography>
-              </MenuItem>
-            ))}
-          </Menu>
-        </Toolbar>
-      </Container>
-    </AppBar>
+      {/* Reserva el espacio ocupado por el AppBar fijo */}
+      <Toolbar
+        sx={{
+          minHeight: {
+            xs: '64px !important',
+            md: '72px !important'
+          }
+        }}
+      />
+    </>
   )
 }
 
